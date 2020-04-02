@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" *ngIf="!auth.loggedIn" routerLink="/home">Home</a>
+        <a class="nav-link"  routerLink="/home">Home</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" *ngIf="auth.loggedIn" routerLink="/products">Products</a>
@@ -26,11 +26,12 @@
           <a class="dropdown-item" *ngIf="auth.loggedIn" routerLink="/messages">Messages</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" *ngIf="auth.loggedIn" routerLink="/products">My products</a>
-          <a class="dropdown-item" *ngIf="auth.loggedIn" href="#">Logout </a>
-          <a class="dropdown-item" *ngIf="!auth.loggedIn" href="#">Login</a>
+          <a class="dropdown-item" (click)="auth.logout()" *ngIf="auth.loggedIn" href="#">Logout </a>
+          <a class="dropdown-item" (click)="auth.login()" *ngIf="!auth.loggedIn" href="#">Login</a>
         </div>
       </li>
     </ul>
 
   </div>
 </nav>
+
