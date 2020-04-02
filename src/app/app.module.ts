@@ -7,6 +7,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ProductsComponent } from './components/products/products.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { ProductsComponent } from './components/products/products.component';
     NavbarComponent,
     HomeComponent,
     ChatComponent,
-    ProductsComponent
+    ProductsComponent,
+    CarouselComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
