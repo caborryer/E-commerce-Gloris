@@ -8,9 +8,9 @@ import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-  {path: 'chat', component: ChatComponent},
+  {path: 'messages', component: ChatComponent},
   {path: 'products', component: ProductsComponent},
-  {path: 'user', component: UserComponent},
+  {path: 'profile', component: UserComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 
