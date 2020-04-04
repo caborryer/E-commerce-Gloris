@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from './service/auth.service';
+// import { AngularFirestore } from '@angular/fire/firestore';
+// import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,8 @@ import { AuthService } from './service/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private auth: AuthService) {
-  }
+ // public items: Observable<any[]>;
+ //  constructor(firestore: AngularFirestore) {
+ //    this.items = firestore.collection('items').valueChanges();
+ //  }
 }

@@ -9,6 +9,14 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ProductsComponent } from './components/products/products.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { UserComponent } from './components/user/user.component';
+import { ProductComponent } from './components/product/product.component';
+import {FormsModule} from '@angular/forms';
+
+// Angular firebase
+// import { AngularFireModule } from '@angular/fire';
+// import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -18,11 +26,13 @@ import { UserComponent } from './components/user/user.component';
     ChatComponent,
     ProductsComponent,
     CarouselComponent,
-    UserComponent
+    UserComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
