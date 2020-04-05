@@ -4,6 +4,7 @@ import { ProductsService } from '../../service/products.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -12,10 +13,28 @@ import { Observable } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
   product: ProductModel = new ProductModel();
+  products: ProductModel[] = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.productsService.getProducts()
+      .subscribe( res => {
+        console.log(res)
+        this.products = res;
+
+      });
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id !== 'new') {
+      this.productsService.getProduct(id)
+        .subscribe((res: ProductModel) => {
+          this.product = res;
+          this.product.id = id;
+        });
+
+    }
   }
 
   save(form: NgForm) {
@@ -32,7 +51,7 @@ export class ProductsComponent implements OnInit {
     });
     Swal.showLoading();
 
-    let petition: Observable<any>
+    let petition: Observable<any>;
 
     // console.log(form);
     // console.log(this.product);
