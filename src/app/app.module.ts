@@ -13,6 +13,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { UserComponent } from './components/user/user.component';
 import { ProductComponent } from './components/product/product.component';
+import {HttpClientModule} from '@angular/common/http';
 // Forms control
 import {FormsModule} from '@angular/forms';
 
@@ -37,6 +38,7 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ScrollingModule
   ],
   providers: [],
