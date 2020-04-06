@@ -16,10 +16,6 @@ export class ProductsService {
   constructor(private http: HttpClient,
               private db: AngularFirestore) { }
 
-  private saveImage( image: {name: string, url: string}) {
-    this.db.collection(`${this.imagesFile}`)
-      .add(image);
-  }
 
   createProduct( product: ProductModel) {
     return this.http.post(`${this.url}/products.json`, product)
@@ -37,6 +33,11 @@ export class ProductsService {
     };
     delete productTemp.id;
     return this.http.put(`${this.url}/products/${product.id}.json`, productTemp);
+  }
+
+  deleteProduct(id: string) {
+    return this.http.delete(`${this.url}/products/${id}.json`);
+
   }
 
   getProduct(id: string) {

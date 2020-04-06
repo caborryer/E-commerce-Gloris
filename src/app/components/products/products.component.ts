@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductModel } from '../../models/product.model';
 import { ProductsService } from '../../service/products.service';
-import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import Swal from "sweetalert2";
+
+
 
 @Component({
   selector: 'app-products',
@@ -12,11 +11,10 @@ import { ActivatedRoute } from '@angular/router';
   styles: []
 })
 export class ProductsComponent implements OnInit {
-  product: ProductModel = new ProductModel();
   products: ProductModel[] = [];
 
   constructor(private productsService: ProductsService,
-              private route: ActivatedRoute) { }
+              ) { }
 
   ngOnInit(): void {
     this.productsService.getProducts()
@@ -26,48 +24,33 @@ export class ProductsComponent implements OnInit {
 
       });
 
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id !== 'new') {
-      this.productsService.getProduct(id)
-        .subscribe((res: ProductModel) => {
-          this.product = res;
-          this.product.id = id;
-        });
-
-    }
   }
 
-  save(form: NgForm) {
-    if (form.invalid) {
-      console.log('Invalid form');
-      return;
-    }
-
+  deleteProduct(product: ProductModel, i: number) {
     Swal.fire({
-      title: 'Wait',
-      text: 'Saving information',
-      icon: 'info',
-      allowOutsideClick: false
-    });
-    Swal.showLoading();
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.products.splice(i, 1);
+        this.productsService.deleteProduct(product.id).subscribe();
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
+      }
+    })
 
-    let petition: Observable<any>;
 
-    // console.log(form);
-    // console.log(this.product);
 
-    if (this.product.id) {
-      petition = this.productsService.updateProduct(this.product);
-    } else {
-      petition = this.productsService.createProduct(this.product);
-    }
-    petition.subscribe(res => {
-      Swal.fire({
-        title: this.product.name,
-        text: 'The information was updated',
-        icon: 'success'
-      });
-    });
   }
+
+
 
 }
